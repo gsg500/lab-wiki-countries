@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router';
+import countries from './countries.json';
+import Navbar from './componentes/Navbar';
+import CountriesList from './componentes/CountriesList';
+import CountryDetails from './componentes/CountryDetails';
+import About from './componentes/About';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <div className="row">
+          <div className="col-3" style={{ maxHeight: '90vh', overflow: 'scroll' }}>
+            <CountriesList countries={countries} />
+          </div>
+          <div className="col-6">
+            <Routes>
+              <Route path="/" element={<About />} />
+              <Route path="/:IdPais" element={<CountryDetails />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
 export default App;
+  //***FEITO EM DUPLA - Guilherme Santos Gomes e Caio Guarnieri / IRONHACK
